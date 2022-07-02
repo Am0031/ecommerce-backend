@@ -72,22 +72,31 @@ router.put("/:id", async (req, res) => {
     if (!category_name) {
       return res.status(500).json({ message: "Unable to update category" });
     }
-    const updatedCategory = await Category.update(
-      { category_name },
-      { where: { id } }
-    );
+    await Category.update({ category_name }, { where: { id } });
 
-    return res
-      .status(200)
-      .json({ message: "Category updated", updatedCategory: updatedCategory });
+    return res.status(200).json({ message: "Category updated" });
   } catch (error) {
     console.error(`ERROR | ${error.message}`);
     return res.status(500).json(error);
   }
 });
 
-router.delete("/:id", (req, res) => {
-  // delete a category by its `id` value
+router.delete("/:id", async (req, res) => {
+  // delete a category by its `id` value -  find it first then destroy it
+  try {
+    const { id } = req.params;
+    const category = await Category.findByPk(id);
+
+    if (!category) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+
+    await Category.destroy({ where: { id } });
+    return res.status(200).json({ message: "Category deleted" });
+  } catch (error) {
+    console.error(`ERROR | ${error.message}`);
+    return res.status(500).json(error);
+  }
 });
 
 module.exports = router;
