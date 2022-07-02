@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { Category, Product } = require("../../models");
 
 // The `/api/categories` endpoint
+//https://sequelize.org/docs/v6/core-concepts/model-instances/
 
 router.get("/", async (req, res) => {
   // find all categories
@@ -42,7 +43,6 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   // create a new category - passing it an object with the key category_name in it >> object=req.body
-  //https://sequelize.org/docs/v6/core-concepts/model-instances/
   try {
     const { category_name } = req.body;
     if (!category_name) {
