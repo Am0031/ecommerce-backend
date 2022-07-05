@@ -1,16 +1,26 @@
-# ecommerce-backend
+# Ecommerce backend
 
-Build the back end for an e-commerce site by configuring a working Express.js API, and using Sequelize to interact with a MySQL database.
+![MIT](https://img.shields.io/badge/License-MIT-blue)
 
-## Your Task
+## Summary of the project and links
 
-Internet retail, also known as **e-commerce**, is the largest sector of the electronics industry, generating an estimated $29 trillion in 2019. E-commerce platforms like Shopify and WooCommerce provide a suite of services to businesses of all sizes. Due to their prevalence, understanding the fundamental architecture of these platforms will benefit you as a full-stack web developer.
+This project is about building the backend of an ecommerce app, configuring a working Express.js API to use Sequelize to interact with a MySQL database.
 
-Your task is to build the back end for an e-commerce site by modifying starter code. You’ll configure a working Express.js API to use Sequelize to interact with a MySQL database.
+Github repo: [Go to Repo](https://github.com/Am0031/ecommerce-backend/tree/dev)
+Demo video: [Go to Demo video]()
 
-Because this application won’t be deployed, you’ll also need to provide a link to a walkthrough video that demonstrates its functionality and all of the acceptance criteria being met. You’ll need to submit a link to the video and add it to the readme of your project.
+## Table of Contents
 
-## User Story
+- [About the Project](#about-the-project)
+- [Technologies](#technologies)
+- [Main logic of the application](#main-logic-of-the-application)
+- [Installation](#installation)
+- [Demo video](#demo-video-of-the-application)
+- [Contact me](#contact-me)
+
+## About the project
+
+### User Story
 
 ```md
 AS A manager at an internet retail company
@@ -18,7 +28,7 @@ I WANT a back end for my e-commerce website that uses the latest technologies
 SO THAT my company can compete with other e-commerce companies
 ```
 
-## Acceptance Criteria
+### Acceptance Criteria
 
 ```md
 GIVEN a functional Express.js API
@@ -34,140 +44,153 @@ WHEN I test API POST, PUT, and DELETE routes in Insomnia
 THEN I am able to successfully create, update, and delete data in my database
 ```
 
-## Getting Started
+## Technologies
+
+For this project, the following technologies and packages were used:
+
+- Node.js v18.2.0 and NPM v8.9.0
+- Node external packages:
+  - "[dotenv](https://www.npmjs.com/package/dotenv)": "^16.0.1",
+  - "express": "^4.18.1",
+  - "[MySQL2](https://www.npmjs.com/package/mysql2)": "^2.3.3",
+  - "[Sequelize](https://www.npmjs.com/package/sequelize)": "^6.21.2"
+
+For testing of the API calls: Postman.
+You can see the Postman collection of requests by uploading [this file](./ecommerce-backend.postman_collection.json) into your postman application and testing these requests.
 
 This Challenge will require a video submission. Refer to the [Fullstack Blog Video Submission Guide](https://coding-boot-camp.github.io/full-stack/computer-literacy/video-submission-guide) for additional guidance on creating a video.
 
-You’ll need to use the [MySQL2](https://www.npmjs.com/package/mysql2) and [Sequelize](https://www.npmjs.com/package/sequelize) packages to connect your Express.js API to a MySQL database and the [dotenv](https://www.npmjs.com/package/dotenv) package to use environment variables to store sensitive data.
+You’ll need to use the and packages to connect your Express.js API to a MySQL database and the package to use environment variables to store sensitive data.
 
 Use the `schema.sql` file in the `db` folder to create your database with MySQL shell commands. Use environment variables to store sensitive data like your MySQL username, password, and database name.
 
+## Main logic of the application
+
 ### Database Models
 
-Your database should contain the following four models, including the requirements listed for each model:
+Our database contains the following four models, including the requirements listed for each model:
 
 - `Category`
 
-  - `id`
+  - `id`: Integer / Doesn't allow null values / Set as primary key / Auto increment.
 
-    - Integer.
-
-    - Doesn't allow null values.
-
-    - Set as primary key.
-
-    - Uses auto increment.
-
-  - `category_name`
-
-    - String.
-
-    - Doesn't allow null values.
+  - `category_name`: String / Doesn't allow null values.
 
 - `Product`
 
-  - `id`
+  - `id`: Integer / Doesn't allow null values / Set as primary key / Auto increment.
 
-    - Integer.
+  - `product_name`: String / Doesn't allow null values.
 
-    - Doesn't allow null values.
+  - `price`: Decimal / Doesn't allow null values / Validates that the value is a decimal.
 
-    - Set as primary key.
+  - `stock`: Integer / Doesn't allow null values / Default value of `10` / Validates that the value is numeric.
 
-    - Uses auto increment.
-
-  - `product_name`
-
-    - String.
-
-    - Doesn't allow null values.
-
-  - `price`
-
-    - Decimal.
-
-    - Doesn't allow null values.
-
-    - Validates that the value is a decimal.
-
-  - `stock`
-
-    - Integer.
-
-    - Doesn't allow null values.
-
-    - Set a default value of `10`.
-
-    - Validates that the value is numeric.
-
-  - `category_id`
-
-    - Integer.
-
-    - References the `Category` model's `id`.
+  - `category_id`: Integer / References the `Category` model's `id`.
 
 - `Tag`
 
-  - `id`
+  - `id`: Integer / Doesn't allow null values / Set as primary key / Auto increment.
 
-    - Integer.
-
-    - Doesn't allow null values.
-
-    - Set as primary key.
-
-    - Uses auto increment.
-
-  - `tag_name`
-
-    - String.
+  - `tag_name`: String / Doesn't allow null values.
 
 - `ProductTag`
 
-  - `id`
+  - `id`: Integer / Doesn't allow null values / Set as primary key / Auto increment.
 
-    - Integer.
+  - `product_id`: Integer / References the `Product` model's `id`.
 
-    - Doesn't allow null values.
-
-    - Set as primary key.
-
-    - Uses auto increment.
-
-  - `product_id`
-
-    - Integer.
-
-    - References the `Product` model's `id`.
-
-  - `tag_id`
-
-    - Integer.
-
-    - References the `Tag` model's `id`.
+  - `tag_id`: Integer / References the `Tag` model's `id`.
 
 ### Associations
 
-You'll need to execute association methods on your Sequelize models to create the following relationships between them:
+Our associations are:
 
 - `Product` belongs to `Category`, and `Category` has many `Product` models, as a category can have multiple products but a product can only belong to one category.
 
-- `Product` belongs to many `Tag` models, and `Tag` belongs to many `Product` models. Allow products to have multiple tags and tags to have many products by using the `ProductTag` through model.
+- `Product` belongs to many `Tag` models, and `Tag` belongs to many `Product` models. Products can have multiple tags and tags can have many products.
 
-> **Hint:** Make sure you set up foreign key relationships that match the column we created in the respective models.
+### Server routes
 
-### Fill Out the API Routes to Perform RESTful CRUD Operations
+Our server routes to our various end points are:
+![Routes](./other/ecommerce-backend-routes.png)
 
-Fill out the unfinished routes in `product-routes.js`, `tag-routes.js`, and `category-routes.js` to perform create, read, update, and delete operations using your Sequelize models.
+## Installation
 
-Note that the functionality for creating the many-to-many relationship for products has already been completed for you.
+To get this project installed, the following steps are required:
 
-> **Hint**: Be sure to look at the mini-project code for syntax help and use your model's column definitions to figure out what `req.body` will be for POST and PUT routes!
+Clone the repository, using SSH keys:
 
-### Seed the Database
+```
+git clone git@github.com:Am0031/ecommerce-backend.git
+```
 
-After creating the models and routes, run `npm run seed` to seed data to your database so that you can test your routes.
+Or using HTTPS link:
 
-### Sync Sequelize to the Database on Server Start
+```
+git clone https://github.com/Am0031/ecommerce-backend.git
+```
 
-Create the code needed in `server.js` to sync the Sequelize models to the MySQL database on server start.
+Go into the new repository and install the required packages:
+
+```
+cd ecommerce-backend
+npm install
+```
+
+Once installed, to get this project running, the following steps must be followed:
+
+Step 1: Set the environment variables
+
+In the root folder, create a .env file. Copy the content from the .env.sample file into your newly created .env file and complete each line as per the below guidance:
+
+```
+DB_HOST= (enter "localhost" or your host details)
+DB_USER= (enter "root" or your user details)
+DB_PASSWORD= (enter your mysql password)
+DB_NAME= "ecommerce_db"
+```
+
+Step 2: Database setup
+
+From the db folder, open an integrated terminal and enter the instructions below in this order, one line at a time, pressing enter after each line:
+
+```
+mysql -u root -p
+(enter your password when prompted)
+
+source schema.sql
+
+quit
+```
+
+This will create the database. At this point, when checking in MySQL Workbench, you should see your database and your tables exists but are empty.
+
+To seed information into this database, from the root folder, open an integrated terminal and enter the instruction below and press enter:
+
+```
+npm run seed
+```
+
+You can check your database in MySQL Workbench and should see information in all your tables.
+
+Step 3: Start the application
+
+Still in your integrated terminal, to run your server, enter the instruction below and press enter:
+
+```
+npm run start
+```
+
+Once your server is up and running, open the postman collection of requests in the Postman application and you can test all the requests, with MySQL Workbench as a supporting application where you can see the amendments to your tables after each request.
+
+## Demo video of the application
+
+This video shows how to set up the application and how to test the end points using Postman and MySQL Workbench.
+Please click [here]() to open the video.
+
+![Demo gif](./other/ecommerce-backend.gif)
+
+## Contact me
+
+If you have any questions about this application, feel free to get in touch by sending me an [email](mailto:amelie.pira@gmail.com).
