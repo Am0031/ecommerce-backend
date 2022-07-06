@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "14f29e0a-756f-4970-9561-0400cf121c9b",
+		"_postman_id": "9266006f-7377-44f4-a3b9-376089eb31fe",
 		"name": "ecommerce-backend-postman",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "9645754"
@@ -211,27 +211,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
-				"url": {
-					"raw": "http://localhost:3001/api/products/7",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3001",
-					"path": [
-						"api",
-						"products",
-						"7"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "DELETE Product By ID",
-			"request": {
-				"method": "DELETE",
-				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product_name\": \"Sports top\",\r\n    \"price\": 75.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "http://localhost:3001/api/products/6",
 					"protocol": "http",
@@ -243,6 +231,27 @@
 						"api",
 						"products",
 						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Product By ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3001/api/products/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"products",
+						"14"
 					]
 				}
 			},
