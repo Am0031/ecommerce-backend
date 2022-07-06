@@ -7,7 +7,7 @@
 This project is about building the backend of an ecommerce app, configuring a working Express.js API to use Sequelize to interact with a MySQL database.
 
 Github repo: [Go to Repo](https://github.com/Am0031/ecommerce-backend/tree/dev)
-Demo video: [Go to Demo video]()
+Demo video: [Go to Demo video](https://drive.google.com/file/d/1alzNUMObvjwmC8wA9zPcCwFv5ZnVGiFm/view)
 
 ## Table of Contents
 
@@ -187,9 +187,7 @@ Once your server is up and running, open the postman collection of requests in t
 ## Demo video of the application
 
 This video shows how to set up the application and how to test the end points using Postman and MySQL Workbench.
-Please click [here]() to open the video.
-
-![Demo gif](./other/ecommerce-backend.gif)
+Please click [here](https://drive.google.com/file/d/1alzNUMObvjwmC8wA9zPcCwFv5ZnVGiFm/view) to open the video.
 
 ## Contact me
 
