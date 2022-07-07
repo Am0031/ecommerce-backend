@@ -1,0 +1,27 @@
+{
+  "name": "ecommerce-backend",
+  "version": "1.0.0",
+  "description": "Build the back end for an e-commerce site by configuring a working Express.js API, and using Sequelize to interact with a MySQL database.",
+  "main": "index.js",
+  "scripts": {
+    "seed": "node src/seeds/index.js",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Am0031/ecommerce-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Am0031/ecommerce-backend/issues"
+  },
+  "homepage": "https://github.com/Am0031/ecommerce-backend#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.2"
+  }
+}
