@@ -58,12 +58,6 @@ For this project, the following technologies and packages were used:
 For testing of the API calls: Postman.
 You can see the Postman collection of requests by uploading [this file](./ecommerce-backend.postman_collection.json) into your postman application and testing these requests.
 
-This Challenge will require a video submission. Refer to the [Fullstack Blog Video Submission Guide](https://coding-boot-camp.github.io/full-stack/computer-literacy/video-submission-guide) for additional guidance on creating a video.
-
-You’ll need to use the and packages to connect your Express.js API to a MySQL database and the package to use environment variables to store sensitive data.
-
-Use the `schema.sql` file in the `db` folder to create your database with MySQL shell commands. Use environment variables to store sensitive data like your MySQL username, password, and database name.
-
 ## Main logic of the application
 
 ### Database Models
